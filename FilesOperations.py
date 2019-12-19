@@ -25,7 +25,8 @@ def save_users_to_file(filename):
     try:
         f = open(filename, "a")
         for user in get_users():
-            json.dump(user.get_user_as_dict(), f)
+            userStr = json.dumps(user.get_user_as_dict()) + "\n"
+            f.write(userStr)
         f.close()
     except Exception as error:
         print("Some error occured during writing to file: {0}".format(error))
