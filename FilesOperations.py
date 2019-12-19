@@ -4,13 +4,18 @@ from User import User
 
 import json
 
+filename = "users.txt"
+
+"""
+Needs refactorization - single responsibility!
+"""
 
 def parse_dict_to_user(dict):
     parsed = User(name=dict["name"], pwd=dict["password"], email=dict["email"])
     return parsed
 
 
-def read_users_from_file(filename):
+def read_users_from_file():
     try:
         f = open(filename, "r")
         for user in f.readlines():
@@ -21,7 +26,7 @@ def read_users_from_file(filename):
         print("Some error occured during reading from file: {0}".format(error))
 
 
-def save_users_to_file(filename):
+def save_users_to_file():
     try:
         f = open(filename, "a")
         for user in get_users():

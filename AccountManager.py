@@ -4,26 +4,19 @@ from FilesOperations import save_users_to_file
 import User
 
 
-def register():
-    new_username = input("Your username: ")
-    new_password = input("Password: ")
-    #repeat_password = input("Repeat password: ")
-    new_email = input("Email: ")
-
-    new_user = User(name=new_username, pwd=new_password, email=new_email)
+def register_account(new_user):
     add_user(new_user)
     save_users_to_file()
 
     #some try - except action,
 
-    print("Congratulations {0} ! You successfully created an account!")
+    print("Congratulations {0} ! You successfully created an account!".format(new_user.name))
 
 
-def login(username, password):
+def login_account(username, password):
     for user in get_users():
         if username == user.name and password == user.password:
             print("successfully logged in")
-            break
-
+            return
     print("wrong username or password")
 
