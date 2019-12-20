@@ -1,16 +1,29 @@
 from UsersManager import add_user
 from UsersManager import get_users
 from FilesOperations import save_users_to_file
+
+from Exceptions.UserExistsException import UserExistsException
+from Exceptions.PasswordExceptions import PasswordsDoesntMatchException
+
 import User
 
 
-def register_account(new_user):
-    add_user(new_user)
-    save_users_to_file()
+def register_account(name, password, repeat_password, email):
+    try:
+        username_validation(name)
+        password_validation(password, repeat_password)
 
-    #some try - except action,
-
-    print("Congratulations {0} ! You successfully created an account!".format(new_user.name))
+        new_user = User(name=name, pwd=password, email=email)
+        add_user(new_user)
+        save_users_to_file()
+    except UserExistsException as error:
+        print(error)
+    except PasswordsDoesntMatchException as error:
+        print(error)
+    except Exception as error:
+        print("An error occured: {0}".format(error))
+    else:
+        print("Congratulations {0} ! You successfully created an account!".format(new_user.name))
 
 
 def login_account(username, password):
@@ -20,3 +33,13 @@ def login_account(username, password):
             return
     print("wrong username or password")
 
+
+def username_validation(username):
+    for user in get_users():
+        if user.name == username:
+            raise UserExistsException
+
+
+def password_validation(password, repeat_password):
+    if password != repeat_password:
+        raise PasswordsDoesntMatchException

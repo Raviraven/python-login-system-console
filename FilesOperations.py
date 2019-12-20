@@ -10,6 +10,7 @@ filename = "users.txt"
 Needs refactorization - single responsibility!
 """
 
+
 def parse_dict_to_user(dict):
     parsed = User(name=dict["name"], pwd=dict["password"], email=dict["email"])
     return parsed

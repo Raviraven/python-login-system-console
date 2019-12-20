@@ -1,16 +1,14 @@
 import FilesOperations
-from User import User
 import AccountManager
 
 
 def register():
     new_username = input("Your username: ")
     new_password = input("Password: ")
-    #repeat_password = input("Repeat password: ")
+    repeat_password = input("Repeat password: ")
     new_email = input("Email: ")
 
-    new_user = User(name=new_username, pwd=new_password, email=new_email)
-    AccountManager.register_account(new_user)
+    AccountManager.register_account(name=new_username, password=new_password, repeat_password=repeat_password, email=new_email)
 
 
 def login():
