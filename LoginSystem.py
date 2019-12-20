@@ -1,11 +1,12 @@
 import FilesOperations
 import AccountManager
+from getpass import getpass
 
 
 def register():
     new_username = input("Your username: ")
-    new_password = input("Password: ")
-    repeat_password = input("Repeat password: ")
+    new_password = input("Password: ") # getpass(prompt="Password: ")  # will work outside pycharm
+    repeat_password = input("Repeat password: ") # getpass(prompt="Repeat_password: ")
     new_email = input("Email: ")
 
     AccountManager.register_account(name=new_username, password=new_password, repeat_password=repeat_password, email=new_email)
