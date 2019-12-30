@@ -13,7 +13,7 @@ def register_account(name, password, repeat_password, email):
         username_validation(name)
         password_validation(password, repeat_password)
 
-        new_user = User(name=name, pwd=password, email=email)
+        new_user = User.User(name=name, pwd=password, email=email)
         add_user(new_user)
         save_users_to_file()
     except UserExistsException as error:
