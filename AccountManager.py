@@ -4,8 +4,10 @@ from FilesOperations import save_users_to_file
 
 from Exceptions.UserExistsException import UserExistsException
 from Exceptions.PasswordExceptions import PasswordsDoesntMatchException
+from Exceptions.InvalidEmailException import InvalidEmailException
 
 import User
+import re
 
 
 def register_account(name, password, repeat_password, email):
@@ -43,3 +45,9 @@ def username_validation(username):
 def password_validation(password, repeat_password):
     if password != repeat_password:
         raise PasswordsDoesntMatchException
+
+
+def email_validation(email):
+    match = re.fullmatch("pattern", email)
+    if match is None:
+        raise InvalidEmailException
