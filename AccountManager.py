@@ -8,6 +8,8 @@ from Exceptions.InvalidEmailException import InvalidEmailException
 
 import User
 import re
+import string
+import secrets
 
 
 def register_account(name, password, repeat_password, email):
@@ -53,3 +55,9 @@ def email_validation(email):
     match = re.fullmatch(email_pattern, email)
     if match is None:
         raise InvalidEmailException
+
+
+def generate_salt(salt_length):
+    alphabet = string.ascii_letters + string.digits
+    salt = ''.join(secrets.choice(alphabet) for i in range(salt_length))
+    return salt
