@@ -13,13 +13,19 @@ import secrets
 import hashlib
 
 
+salt_length = 8
+
+
 def register_account(name, password, repeat_password, email):
     try:
         username_validation(name)
         password_validation(password, repeat_password)
         email_validation(email)
 
-        new_user = User.User(name=name, pwd=password, email=email)
+        salt = generate_salt(salt_length=salt_length)
+        password_hashed = hash_password(password=password, salt=salt)
+
+        new_user = User.User(name=name, pwd=password_hashed, email=email, salt=salt)
         add_user(new_user)
         save_users_to_file()
     except UserExistsException as error:
