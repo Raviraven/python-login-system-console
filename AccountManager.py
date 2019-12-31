@@ -10,6 +10,7 @@ import User
 import re
 import string
 import secrets
+import hashlib
 
 
 def register_account(name, password, repeat_password, email):
@@ -61,3 +62,9 @@ def generate_salt(salt_length):
     alphabet = string.ascii_letters + string.digits
     salt = ''.join(secrets.choice(alphabet) for i in range(salt_length))
     return salt
+
+
+def hash_password(password, salt):
+    password_salted = password + salt
+    password_hashed = hashlib.sha256(password_salted.encode()).hexdigest()
+    return password_hashed
