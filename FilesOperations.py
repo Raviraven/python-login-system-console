@@ -29,7 +29,7 @@ def read_users_from_file():
 
 def save_users_to_file():
     try:
-        f = open(filename, "a")
+        f = open(filename, "w")
         for user in get_users():
             userStr = json.dumps(user.get_user_as_dict()) + "\n"
             f.write(userStr)

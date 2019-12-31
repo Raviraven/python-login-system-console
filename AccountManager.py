@@ -22,7 +22,7 @@ def register_account(name, password, repeat_password, email):
         password_validation(password, repeat_password)
         email_validation(email)
 
-        salt = generate_salt(salt_length=salt_length)
+        salt = generate_salt()
         password_hashed = hash_password(password=password, salt=salt)
 
         new_user = User.User(name=name, pwd=password_hashed, email=email, salt=salt)
@@ -40,7 +40,8 @@ def register_account(name, password, repeat_password, email):
 
 def login_account(username, password):
     for user in get_users():
-        if username == user.name and password == user.password:
+        password_hashed = hash_password(password, user.salt)
+        if username == user.name and password_hashed == user.password:
             print("successfully logged in")
             return
     print("wrong username or password")
@@ -64,7 +65,7 @@ def email_validation(email):
         raise InvalidEmailException
 
 
-def generate_salt(salt_length):
+def generate_salt():
     alphabet = string.ascii_letters + string.digits
     salt = ''.join(secrets.choice(alphabet) for i in range(salt_length))
     return salt
