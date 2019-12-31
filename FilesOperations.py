@@ -10,9 +10,9 @@ filename = "users.txt"
 Needs refactorization - single responsibility!
 """
 
-
+# transfer into User class to store parsing only in one file?
 def parse_dict_to_user(dict):
-    parsed = User(name=dict["name"], pwd=dict["password"], email=dict["email"])
+    parsed = User(name=dict["name"], pwd=dict["password"], email=dict["email"], salt=dict["salt"])
     return parsed
 
 
