@@ -17,3 +17,8 @@ class User:
             "salt": self.salt
         }
         return result
+
+
+def parse_dict_to_user(dict):
+    parsed = User(name=dict["name"], pwd=dict["password"], email=dict["email"], salt=dict["salt"])
+    return parsed

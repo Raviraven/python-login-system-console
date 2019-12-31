@@ -1,19 +1,10 @@
 from UsersManager import add_user
 from UsersManager import get_users
-from User import User
+from User import parse_dict_to_user
 
 import json
 
 filename = "users.txt"
-
-"""
-Needs refactorization - single responsibility!
-"""
-
-# transfer into User class to store parsing only in one file?
-def parse_dict_to_user(dict):
-    parsed = User(name=dict["name"], pwd=dict["password"], email=dict["email"], salt=dict["salt"])
-    return parsed
 
 
 def read_users_from_file():
