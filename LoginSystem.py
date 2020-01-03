@@ -27,21 +27,21 @@ def login():
 
 
 FilesOperations.read_users_from_file()
-
 print("Hi! Do you want to register a new account or log in into existing one?")
-print("1. Register")
-print("2. Log in")
 
-done = False
-while(not done):
-    chosenOption = input("Option: ")
-    if chosenOption == '1':
-        register()
-        done = True
-    elif chosenOption == '2':
-        login()
-        done = True
-    else:
-        print("wrong command")
+try:
+    while True:
+        print("(1) Register")
+        print("(2) Log in")
+        print("(q) Exit")
 
-print("The end :V ")
+        chosenOption = get_input("Option: ")
+
+        if chosenOption == '1':
+            register()
+        elif chosenOption == '2':
+            login()
+        else:
+            print("wrong command")
+except ExitException as error:
+    print(error)
