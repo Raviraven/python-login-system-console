@@ -1,6 +1,14 @@
 import FilesOperations
 import AccountManager
 from getpass import getpass
+from Exceptions.ExitException import ExitException
+
+
+def get_input(input_prompt):
+    temp = input(input_prompt)
+    if temp == 'q':
+        raise ExitException
+    return temp
 
 
 def register():
