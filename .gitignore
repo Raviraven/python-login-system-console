@@ -6,3 +6,8 @@ __pycache__/
 
 ProjectIdea.txt
 users.txt
+
+# pyinstaller
+build/
+dist/
+LoginSystem.spec
