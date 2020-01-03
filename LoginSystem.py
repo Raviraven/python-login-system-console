@@ -2,6 +2,10 @@ import FilesOperations
 import AccountManager
 from getpass import getpass
 from Exceptions.ExitException import ExitException
+import os
+
+
+clear = lambda: os.system("cls")
 
 
 def get_input(input_prompt):
@@ -13,11 +17,12 @@ def get_input(input_prompt):
 
 def register():
     new_username = input("Your username: ")
-    new_password = input("Password: ") # getpass(prompt="Password: ")  # will work outside pycharm
-    repeat_password = input("Repeat password: ") # getpass(prompt="Repeat_password: ")
+    new_password = input("Password: ")  # getpass(prompt="Password: ")  # will work outside pycharm
+    repeat_password = input("Repeat password: ")  # getpass(prompt="Repeat_password: ")
     new_email = input("Email: ")
 
-    AccountManager.register_account(name=new_username, password=new_password, repeat_password=repeat_password, email=new_email)
+    AccountManager.register_account(name=new_username, password=new_password, repeat_password=repeat_password,
+                                    email=new_email)
 
 
 def login():
@@ -27,6 +32,7 @@ def login():
 
 
 FilesOperations.read_users_from_file()
+clear()
 print("Hi! Do you want to register a new account or log in into existing one?")
 
 try:
@@ -43,5 +49,7 @@ try:
             login()
         else:
             print("wrong command")
+
+        clear()
 except ExitException as error:
     print(error)
