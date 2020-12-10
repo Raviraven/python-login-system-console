@@ -11,3 +11,4 @@ users.txt
 build/
 dist/
 LoginSystem.spec
+.vscode/
